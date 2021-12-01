@@ -2,10 +2,10 @@
 FROM ubuntu:bionic
 
 ARG APT_MIRROR=JP
-ARG RUBY_VERSION=2.7.4
-ARG NODE_VERSION=14.17.3
-ARG BUNDLER_VERSION=2.2.22
-ARG YARN_VERSION=1.22.10
+ARG RUBY_VERSION=2.7.5
+ARG NODE_VERSION=16.13.0
+ARG BUNDLER_VERSION=2.2.32
+ARG YARN_VERSION=1.22.17
 ARG DOCKER_VERSION=5:19.03.13~3-0~ubuntu-bionic
 ARG COMPOSE_VERSION=1.27.4
 ARG DOCKERIZE_VERSION=v0.6.1
@@ -142,6 +142,7 @@ RUN gem update --force
 RUN rm $(gem env gemdir)/cache/*.gem
 RUN gem --version
 RUN gem install bundler -v "${BUNDLER_VERSION}"
+RUN gem install aws-sdk-ssm
 RUN bundler --version
 RUN bundle config set --global auto_config_jobs true \
  && bundle config set --global clean true \
